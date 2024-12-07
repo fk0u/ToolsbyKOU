@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alat Konverter PDF</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar (Hamburger Menu) -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 shadow-md sticky top-0 z-20">
+        <div class="container mx-auto flex items-center justify-between">
+            <h1 class="text-2xl font-bold tracking-wide">Tools by KOU</h1>
+            <div class="lg:hidden">
+                <button id="hamburger-icon" class="text-white text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i> <!-- Hamburger Icon -->
+                </button>
+            </div>
+            <nav id="navbar" class="hidden lg:flex space-x-6 text-lg">
+                <a href="/index.html#landing" class="hover:text-gray-300 transition-all"><i class="fas fa-home"></i> Beranda</a>
+                <a href="../" class="hover:text-gray-300 transition-all"><i class="fas fa-tools"></i> Tools</a>
+                <a href="/index.html#about" class="hover:text-gray-300 transition-all"><i class="fas fa-info"></i> Tentang</a>
+                <a href="/index.html#support" class="hover:text-gray-300 transition-all"><i class="fas fa-heart"></i> Dukung Kami</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-30 hidden">
+        <div class="bg-white p-6">
+            <button id="close-menu" class="text-black text-2xl mb-4 float-right">
+                <i class="fas fa-times"></i> <!-- Close Icon -->
+            </button>
+            <ul class="space-y-4 text-xl">
+                <li><a href="#" class="block font-bold text-blue-600">Tools by KOU</a></li>
+                <li><a href="/index.html#landing" class="block hover:text-blue-600"><i class="fa fas-home"></i> Beranda</a></li>
+                <li><a href="../" class="block hover:text-blue-600"><i class="fa fas-tools"></i> Tools</a></li>
+                <li><a href="/index.html#about" class="block hover:text-blue-600"><i class="fa fas-info"></i> Tentang</a></li>
+                <li><a href="/index.html#support" class="block hover:text-blue-600"><i class="fa fas-heart"></i> Dukung Kami</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <section id="pdf-converter" class="py-16 bg-white text-center">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-extrabold mb-6 text-blue-600">Konverter PDF</h2>
+            <p class="text-lg text-gray-700 mb-8">Pilih file yang ingin Anda konversi menjadi PDF dan unduh hasilnya.</p>
+
+            <!-- File Upload Form -->
+            <div class="space-y-4 max-w-lg mx-auto">
+                <!-- Input File -->
+                <input type="file" id="fileInput" class="w-full py-2 px-4 border-2 border-gray-300 rounded-md" />
+
+                <!-- Convert Button -->
+                <button id="convertButton" class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700" onclick="convertToPDF()">Konversi ke PDF</button>
+
+                <!-- Error Message -->
+                <div id="errorMessage" class="text-red-500 mt-4"></div>
+
+                <!-- Download Link -->
+                <div id="downloadLink" class="mt-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function convertToPDF() {
+            const fileInput = document.getElementById('fileInput');
+            const errorMessage = document.getElementById('errorMessage');
+            const downloadLink = document.getElementById('downloadLink');
+
+            // Reset error message
+            errorMessage.textContent = '';
+            downloadLink.innerHTML = '';
+
+            if (!fileInput.files || fileInput.files.length === 0) {
+                errorMessage.textContent = 'Silakan pilih file terlebih dahulu.';
+                return;
+            }
+
+            const file = fileInput.files[0];
+
+            // Menangani konversi file teks ke PDF
+            if (file.type === 'text/plain') {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const content = event.target.result;
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF();
+
+                    // Menambahkan teks ke dalam PDF
+                    doc.text(content, 10, 10);
+                    const pdfOutput = doc.output('bloburl');
+
+                    // Menyediakan link untuk mendownload PDF
+                    downloadLink.innerHTML = `<a href="${pdfOutput}" download="document.pdf" class="w-full bg-green-600 text-white py-3 rounded-md text-center hover:bg-green-700">Unduh PDF</a>`;
+                };
+                reader.readAsText(file);
+            } 
+            // Menangani konversi gambar (PNG/JPEG) ke PDF
+            else if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const imgData = event.target.result;
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF();
+
+                    // Menambahkan gambar ke dalam PDF
+                    doc.addImage(imgData, 'JPEG', 10, 10, 180, 160);
+                    const pdfOutput = doc.output('bloburl');
+
+                    // Menyediakan link untuk mendownload PDF
+                    downloadLink.innerHTML = `<a href="${pdfOutput}" download="image.pdf" class="w-full bg-green-600 text-white py-3 rounded-md text-center hover:bg-green-700">Unduh PDF</a>`;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                errorMessage.textContent = 'Hanya file teks atau gambar yang bisa dikonversi.';
+            }
+        }
+    </script>
+
+</body>
+</html>

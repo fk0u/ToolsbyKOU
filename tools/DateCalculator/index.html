@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <style>
+        .error {
+            color: red;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar (Hamburger Menu) -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 shadow-md sticky top-0 z-20">
+        <div class="container mx-auto flex items-center justify-between">
+            <h1 class="text-2xl font-bold tracking-wide">Tools by KOU</h1>
+            <div class="lg:hidden">
+                <button id="hamburger-icon" class="text-white text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i> <!-- Hamburger Icon -->
+                </button>
+            </div>
+            <nav id="navbar" class="hidden lg:flex space-x-6 text-lg">
+                <a href="/index.html#landing" class="hover:text-gray-300 transition-all"><i class="fas fa-home"></i> Beranda</a>
+                <a href="../" class="hover:text-gray-300 transition-all"><i class="fas fa-tools"></i> Tools</a>
+                <a href="/index.html#about" class="hover:text-gray-300 transition-all"><i class="fas fa-info"></i> Tentang</a>
+                <a href="/index.html#support" class="hover:text-gray-300 transition-all"><i class="fas fa-heart"></i> Dukung Kami</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-30 hidden">
+        <div class="bg-white p-6">
+            <button id="close-menu" class="text-black text-2xl mb-4 float-right">
+                <i class="fas fa-times"></i> <!-- Close Icon -->
+            </button>
+            <ul class="space-y-4 text-xl">
+                <li><a href="#" class="block font-bold text-blue-600">Tools by KOU</a></li>
+                <li><a href="/index.html#landing" class="block hover:text-blue-600"><i class="fa fas-home"></i> Beranda</a></li>
+                <li><a href="../" class="block hover:text-blue-600"><i class="fa fas-tools"></i> Tools</a></li>
+                <li><a href="/index.html#about" class="block hover:text-blue-600"><i class="fa fas-info"></i> Tentang</a></li>
+                <li><a href="/index.html#support" class="block hover:text-blue-600"><i class="fa fas-heart"></i> Dukung Kami</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <section class="py-16 bg-white text-center">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-extrabold mb-6 text-blue-600">Perhitungan Tanggal</h2>
+            <p class="text-lg text-gray-700 mb-8">Hitung perbedaan tanggal atau tambahkan / kurangi hari, bulan, atau tahun.</p>
+
+            <!-- Date Inputs -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label for="startDate" class="block text-lg text-gray-700">Tanggal Awal</label>
+                    <input id="startDate" type="date" class="w-full p-4 border-2 border-gray-300 rounded-md" />
+                    <p id="startDateError" class="error"></p>
+                </div>
+                <div>
+                    <label for="endDate" class="block text-lg text-gray-700">Tanggal Akhir</label>
+                    <input id="endDate" type="date" class="w-full p-4 border-2 border-gray-300 rounded-md" />
+                    <p id="endDateError" class="error"></p>
+                </div>
+            </div>
+
+            <!-- Date Operations -->
+            <div class="mb-6">
+                <label for="days" class="block text-lg text-gray-700">Tambahkan/Kurangi Hari</label>
+                <input id="days" type="number" class="w-full p-4 border-2 border-gray-300 rounded-md" placeholder="Masukkan jumlah hari" />
+            </div>
+
+            <div class="flex justify-center gap-4 mb-6">
+                <button onclick="addDays()" class="bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700">Tambahkan Hari</button>
+                <button onclick="subtractDays()" class="bg-red-600 text-white py-3 px-6 rounded-md hover:bg-red-700">Kurangi Hari</button>
+            </div>
+
+            <!-- Calculate Difference -->
+            <div class="mb-6">
+                <button onclick="calculateDifference()" class="bg-green-600 text-white py-3 px-6 rounded-md hover:bg-green-700">Hitung Selisih Tanggal</button>
+            </div>
+
+            <!-- Result Section -->
+            <div id="result" class="mt-8">
+                <!-- Hasil perhitungan akan muncul di sini -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Fungsi untuk menambahkan hari pada tanggal awal
+        function addDays() {
+            const startDate = document.getElementById('startDate').value;
+            const days = document.getElementById('days').value;
+
+            // Reset error messages
+            document.getElementById('startDateError').textContent = '';
+            document.getElementById('endDateError').textContent = '';
+
+            if (!startDate || !days) {
+                alert('Harap masukkan tanggal dan jumlah hari!');
+                return;
+            }
+
+            // Menambahkan hari ke tanggal yang dipilih
+            let newDate = new Date(startDate);
+            newDate.setDate(newDate.getDate() + parseInt(days));
+
+            const formattedDate = newDate.toISOString().split('T')[0]; // Format YYYY-MM-DD
+            document.getElementById('result').innerHTML = `Tanggal setelah ditambahkan ${days} hari: ${formattedDate}`;
+        }
+
+        // Fungsi untuk mengurangi hari pada tanggal awal
+        function subtractDays() {
+            const startDate = document.getElementById('startDate').value;
+            const days = document.getElementById('days').value;
+
+            // Reset error messages
+            document.getElementById('startDateError').textContent = '';
+            document.getElementById('endDateError').textContent = '';
+
+            if (!startDate || !days) {
+                alert('Harap masukkan tanggal dan jumlah hari!');
+                return;
+            }
+
+            // Mengurangi hari dari tanggal yang dipilih
+            let newDate = new Date(startDate);
+            newDate.setDate(newDate.getDate() - parseInt(days));
+
+            const formattedDate = newDate.toISOString().split('T')[0]; // Format YYYY-MM-DD
+            document.getElementById('result').innerHTML = `Tanggal setelah dikurangi ${days} hari: ${formattedDate}`;
+        }
+
+        // Fungsi untuk menghitung perbedaan antara dua tanggal
+        function calculateDifference() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+
+            // Reset error messages
+            document.getElementById('startDateError').textContent = '';
+            document.getElementById('endDateError').textContent = '';
+
+            if (!startDate || !endDate) {
+                alert('Harap masukkan kedua tanggal!');
+                return;
+            }
+
+            // Menghitung selisih hari antara dua tanggal
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+
+            const timeDifference = Math.abs(end - start);
+            const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24)); // Convert milliseconds to days
+
+            document.getElementById('result').innerHTML = `Selisih antara tanggal yang dipilih: ${daysDifference} hari`;
+        }
+    </script>
+
+</body>
+</html>

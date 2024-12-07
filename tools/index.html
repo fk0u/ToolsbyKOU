@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools - Daftar Alat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Navbar (Hamburger Menu) -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 shadow-md sticky top-0 z-20">
+        <div class="container mx-auto flex items-center justify-between">
+            <h1 class="text-2xl font-bold tracking-wide">Tools by KOU</h1>
+            <div class="lg:hidden">
+                <button id="hamburger-icon" class="text-white text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i> <!-- Hamburger Icon -->
+                </button>
+            </div>
+            <nav id="navbar" class="hidden lg:flex space-x-6 text-lg">
+                <a href="../" class="hover:text-gray-300 transition-all"><i class="fas fa-home"></i> Beranda</a>
+                <a href="#" class="hover:text-gray-300 transition-all"><i class="fas fa-tools"></i> Tools</a>
+                <a href="/index.html#about" class="hover:text-gray-300 transition-all"><i class="fas fa-info"></i> Tentang</a>
+                <a href="/index.html#support" class="hover:text-gray-300 transition-all"><i class="fas fa-heart"></i> Dukung Kami</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-30 hidden">
+        <div class="bg-white p-6">
+            <button id="close-menu" class="text-black text-2xl mb-4 float-right">
+                <i class="fas fa-times"></i> <!-- Close Icon -->
+            </button>
+            <ul class="space-y-4 text-xl">
+                <li><a href="#" class="block font-bold text-blue-600">Tools by KOU</a></li>
+                <li><a href="../" class="block hover:text-blue-600"><i class="fa fas-home"></i> Beranda</a></li>
+                <li><a href="#" class="block hover:text-blue-600"><i class="fa fas-tools"></i> Tools</a></li>
+                <li><a href="/index.html#about" class="block hover:text-blue-600"><i class="fa fas-info"></i> Tentang</a></li>
+                <li><a href="/index.html#support" class="block hover:text-blue-600"><i class="fa fas-heart"></i> Dukung Kami</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Tools Section -->
+    <section id="tools" class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl text-blue-600 font-extrabold mb-6 mt-2">Daftar Semua Tools</h2>
+
+            <!-- Search Bar -->
+            <input type="text" id="search-bar" placeholder="Cari Tools..." class="py-2 px-4 border-2 border-gray-300 rounded-md w-full md:w-1/3 mb-6">
+
+            <!-- Sort & Filter Section -->
+            <div class="flex justify-center gap-4 mb-6">
+                <select id="filter-sort" class="py-2 px-4 border-2 border-gray-300 rounded-md">
+                    <option value="default">Urutkan Berdasarkan</option>
+                    <option value="name-asc">Nama (A-Z)</option>
+                    <option value="name-desc">Nama (Z-A)</option>
+                </select>
+            </div>
+
+            <!-- Tools Container -->
+            <div id="tools-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Tools akan di-render di sini -->
+            </div>
+
+           <!-- Pagination -->
+            <div id="pagination-container" class="flex justify-center items-center space-x-6 mt-6">
+                <button id="prev-btn" class="bg-blue-600 text-white py-2 px-4 rounded-md">Prev</button>
+                <span id="page-info" class="text-gray-600">Page <span id="current-page">1</span> of <span id="total-pages">6</span></span>
+                <button id="next-btn" class="bg-blue-600 text-white py-2 px-4 rounded-md">Next</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 KOU</p>
+        </div>
+    </footer>
+
+    <script src="tools.js"></script>
+</body>
+</html>

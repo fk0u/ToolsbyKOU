@@ -1,0 +1,12 @@
+Update v3.2 Tools by KOU Revamp 2025
+Tanggal Rilis: 7 Desember 2024
+Waktu Pengerjaan: 2 Jam 50 Menit
+
+Fitur Baru & Perbaikan:
+Penambahan Tools Baru
+Perbaikan UI/UX
+
+Bug Fixes:
+- Memperbaiki bug pada beberapa alat yang tidak dapat diakses pada perangkat tertentu.
+- Memperbaiki masalah kompatibilitas pada beberapa browser yang lebih lama.
+- Menyelesaikan masalah pengunduhan yang terjadi pada beberapa platform seperti Instagram dan TikTok.

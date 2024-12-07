@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools Pan Balance - Tools by KOU</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Styling for Pan Balance */
+        .pan-balance {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 250px;
+            margin-top: 50px;
+        }
+
+        .pan {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 50px;
+            background-color: #ccc;
+            border-radius: 10px;
+            position: absolute;
+        }
+
+        .balance-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #333;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .pivot {
+            width: 10px;
+            height: 20px;
+            background-color: #333;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            margin-left: -5px;
+        }
+
+        .pan-left,
+        .pan-right {
+            position: absolute;
+            bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .pan-left {
+            left: 5%;
+        }
+
+        .pan-right {
+            right: 5%;
+        }
+
+        .pan-weight {
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-color: blue;
+            border-radius: 50%;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .pan-weight.active {
+            background-color: red;
+        }
+
+        .balance-control {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .weight-input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #ddd;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive Styles */
+        @media (min-width: 640px) {
+            .pan-balance {
+                height: 300px;
+            }
+
+            .balance-bar {
+                width: 500px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .pan-balance {
+                height: 400px;
+            }
+
+            .balance-bar {
+                width: 600px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Navbar (Hamburger Menu) -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 shadow-md sticky top-0 z-20">
+        <div class="container mx-auto flex items-center justify-between">
+            <h1 class="text-2xl font-bold tracking-wide">Tools by KOU</h1>
+            <div class="lg:hidden">
+                <button id="hamburger-icon" class="text-white text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i> <!-- Hamburger Icon -->
+                </button>
+            </div>
+            <nav id="navbar" class="hidden lg:flex space-x-6 text-lg">
+                <a href="/index.html#landing" class="hover:text-gray-300 transition-all"><i class="fas fa-home"></i> Beranda</a>
+                <a href="../" class="hover:text-gray-300 transition-all"><i class="fas fa-tools"></i> Tools</a>
+                <a href="/index.html#about" class="hover:text-gray-300 transition-all"><i class="fas fa-info"></i> Tentang</a>
+                <a href="/index.html#support" class="hover:text-gray-300 transition-all"><i class="fas fa-heart"></i> Dukung Kami</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-30 hidden">
+        <div class="bg-white p-6">
+            <button id="close-menu" class="text-black text-2xl mb-4 float-right">
+                <i class="fas fa-times"></i> <!-- Close Icon -->
+            </button>
+            <ul class="space-y-4 text-xl">
+                <li><a href="#" class="block font-bold text-blue-600">Tools by KOU</a></li>
+                <li><a href="/index.html#landing" class="block hover:text-blue-600"><i class="fa fas-home"></i> Beranda</a></li>
+                <li><a href="../" class="block hover:text-blue-600"><i class="fa fas-tools"></i> Tools</a></li>
+                <li><a href="/index.html#about" class="block hover:text-blue-600"><i class="fa fas-info"></i> Tentang</a></li>
+                <li><a href="/index.html#support" class="block hover:text-blue-600"><i class="fa fas-heart"></i> Dukung Kami</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Pan Balance Section -->
+    <section class="py-8">
+        <div class="container mx-auto max-w-4xl bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-3xl font-bold text-blue-600 text-center mb-6">Pan Balance</h2>
+
+            <div class="pan-balance">
+                <!-- Balance Bar -->
+                <div class="balance-bar">
+                    <div class="pivot"></div>
+                    <div class="pan-left">
+                        <!-- Pan Left with weights -->
+                        <div class="pan" id="left-pan"></div>
+                    </div>
+                    <div class="pan-right">
+                        <!-- Pan Right with weights -->
+                        <div class="pan" id="right-pan"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls to add/remove weights -->
+            <div class="balance-control flex flex-col items-center sm:flex-row sm:justify-center sm:gap-10">
+                <input type="number" id="weight-left" class="weight-input w-24 mb-4 sm:mb-0" placeholder="Weight Left" />
+                <input type="number" id="weight-right" class="weight-input w-24 mb-4 sm:mb-0" placeholder="Weight Right" />
+                <button id="add-weight" class="btn w-full sm:w-auto">Tambahkan Bobot</button>
+            </div>
+
+            <p class="text-center mt-4" id="balance-status"></p>
+        </div>
+    </section>
+
+    <script>
+        const leftPan = document.getElementById("left-pan");
+        const rightPan = document.getElementById("right-pan");
+        const balanceStatus = document.getElementById("balance-status");
+
+        const addWeightButton = document.getElementById("add-weight");
+        const weightLeftInput = document.getElementById("weight-left");
+        const weightRightInput = document.getElementById("weight-right");
+
+        // Function to update the balance
+        function updateBalance() {
+            const leftWeight = parseInt(weightLeftInput.value) || 0;
+            const rightWeight = parseInt(weightRightInput.value) || 0;
+
+            // Clear previous weights
+            leftPan.innerHTML = '';
+            rightPan.innerHTML = '';
+
+            // Add weights to the pan
+            for (let i = 0; i < leftWeight; i++) {
+                const weight = document.createElement("div");
+                weight.classList.add("pan-weight");
+                weight.classList.add("active");
+                leftPan.appendChild(weight);
+            }
+
+            for (let i = 0; i < rightWeight; i++) {
+                const weight = document.createElement("div");
+                weight.classList.add("pan-weight");
+                weight.classList.add("active");
+                rightPan.appendChild(weight);
+            }
+
+            // Check balance status
+            if (leftWeight > rightWeight) {
+                balanceStatus.textContent = "Neraca miring ke kiri!";
+                balanceStatus.classList.add("text-red-500");
+                balanceStatus.classList.remove("text-green-500");
+            } else if (rightWeight > leftWeight) {
+                balanceStatus.textContent = "Neraca miring ke kanan!";
+                balanceStatus.classList.add("text-red-500");
+                balanceStatus.classList.remove("text-green-500");
+            } else {
+                balanceStatus.textContent = "Neraca seimbang!";
+                balanceStatus.classList.add("text-green-500");
+                balanceStatus.classList.remove("text-red-500");
+            }
+        }
+
+        // Event listener for the add weight button
+        addWeightButton.addEventListener("click", function () {
+            updateBalance();
+        });
+
+        // Initial balance update
+        updateBalance();
+    </script>
+
+</body>
+
+</html>

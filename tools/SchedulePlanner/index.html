@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perencana Jadwal Acara</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 -->
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CSS -->
+</head>
+<body class="font-sans bg-gray-100">
+
+    <!-- Navbar (Hamburger Menu) -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 shadow-md sticky top-0 z-20">
+        <div class="container mx-auto flex items-center justify-between">
+            <h1 class="text-2xl font-bold tracking-wide">Tools by KOU</h1>
+            <div class="lg:hidden">
+                <button id="hamburger-icon" class="text-white text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i> <!-- Hamburger Icon -->
+                </button>
+            </div>
+            <nav id="navbar" class="hidden lg:flex space-x-6 text-lg">
+                <a href="/index.html#landing" class="hover:text-gray-300 transition-all"><i class="fas fa-home"></i> Beranda</a>
+                <a href="../" class="hover:text-gray-300 transition-all"><i class="fas fa-tools"></i> Tools</a>
+                <a href="/index.html#about" class="hover:text-gray-300 transition-all"><i class="fas fa-info"></i> Tentang</a>
+                <a href="/index.html#support" class="hover:text-gray-300 transition-all"><i class="fas fa-heart"></i> Dukung Kami</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-30 hidden">
+        <div class="bg-white p-6">
+            <button id="close-menu" class="text-black text-2xl mb-4 float-right">
+                <i class="fas fa-times"></i> <!-- Close Icon -->
+            </button>
+            <ul class="space-y-4 text-xl">
+                <li><a href="#" class="block font-bold text-blue-600">Tools by KOU</a></li>
+                <li><a href="/index.html#landing" class="block hover:text-blue-600"><i class="fa fas-home"></i> Beranda</a></li>
+                <li><a href="../" class="block hover:text-blue-600"><i class="fa fas-tools"></i> Tools</a></li>
+                <li><a href="/index.html#about" class="block hover:text-blue-600"><i class="fa fas-info"></i> Tentang</a></li>
+                <li><a href="/index.html#support" class="block hover:text-blue-600"><i class="fa fas-heart"></i> Dukung Kami</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Form Perencana Jadwal -->
+    <section class="py-16 bg-white text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-extrabold mb-6 text-blue-600">Perencana Jadwal Acara</h2>
+            
+            <!-- Nama Acara -->
+            <input id="event-name" type="text" placeholder="Nama Acara" class="p-4 border border-gray-300 rounded-md mb-4 w-full max-w-lg">
+            
+            <!-- Tanggal Acara -->
+            <input id="event-date" type="date" class="p-4 border border-gray-300 rounded-md mb-4 w-full max-w-lg">
+            
+            <!-- Waktu Acara -->
+            <input id="event-time" type="time" class="p-4 border border-gray-300 rounded-md mb-4 w-full max-w-lg">
+            
+            <!-- Deskripsi Acara -->
+            <textarea id="event-description" placeholder="Deskripsi Acara" class="p-4 border border-gray-300 rounded-md mb-4 w-full max-w-lg"></textarea>
+
+            <!-- Lokasi Acara -->
+            <input id="event-location" type="text" placeholder="Lokasi Acara" class="p-4 border border-gray-300 rounded-md mb-4 w-full max-w-lg">
+
+            <!-- Tamu -->
+            <input id="event-guests" type="text" placeholder="Email Tamu (Pisahkan dengan koma)" class="p-4 border border-gray-300 rounded-md mb-4 w-full max-w-lg">
+
+            <!-- Pengingat -->
+            <select id="event-reminder" class="p-4 border border-gray-300 rounded-md mb-4 w-full max-w-lg">
+                <option value="10">10 Menit Sebelumnya</option>
+                <option value="30">30 Menit Sebelumnya</option>
+                <option value="60">1 Jam Sebelumnya</option>
+                <option value="120">2 Jam Sebelumnya</option>
+            </select>
+
+            <!-- Tombol untuk Menambahkan ke Google Calendar -->
+            <button id="add-to-calendar-btn" class="bg-blue-600 text-white p-4 rounded-md mb-4 w-full max-w-lg">Tambahkan ke Google Calendar</button>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById("add-to-calendar-btn").addEventListener("click", function() {
+            const eventName = document.getElementById("event-name").value;
+            const eventDate = document.getElementById("event-date").value;
+            const eventTime = document.getElementById("event-time").value;
+            const eventDescription = document.getElementById("event-description").value;
+            const eventLocation = document.getElementById("event-location").value;
+            const eventGuests = document.getElementById("event-guests").value;
+            const eventReminder = document.getElementById("event-reminder").value;
+
+            // Validasi input (cek jika nama acara, tanggal, atau waktu kosong)
+            if (!eventName || !eventDate || !eventTime) {
+                Swal.fire("Error", "Harap lengkapi Nama Acara, Tanggal, dan Waktu!", "error");
+                return;
+            }
+
+            // Gabungkan tanggal dan waktu dalam format ISO 8601 untuk Google Calendar
+            const eventDateTime = new Date(`${eventDate}T${eventTime}:00`);
+
+            // Convert to UTC (Google Calendar menggunakan UTC)
+            const googleCalendarStart = eventDateTime.toISOString().replace(/-|:|\.\d+/g, ''); // Format Google Calendar: YYYYMMDDTHHmmssZ
+            const googleCalendarEnd = new Date(eventDateTime.getTime() + 60 * 60 * 1000).toISOString().replace(/-|:|\.\d+/g, ''); // Durasi 1 jam
+            
+            // Membuat URL untuk menambahkan acara ke Google Calendar
+            let googleCalendarURL = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventName)}&dates=${googleCalendarStart}/${googleCalendarEnd}&details=${encodeURIComponent(eventDescription)}&location=${encodeURIComponent(eventLocation)}&sprop=&sprop=name%3A&trp=false`;
+
+            // Menambahkan tamu (email) jika ada
+            if (eventGuests) {
+                const guestsArray = eventGuests.split(',').map(email => email.trim());
+                const guestsParam = guestsArray.join(',');
+                googleCalendarURL += `&add=${guestsParam}`;
+            }
+
+            // Menambahkan pengingat (Reminder) ke URL
+            googleCalendarURL += `&reminder=${eventReminder * 60}`; // Mengonversi pengingat ke menit
+
+            // Arahkan ke URL Google Calendar
+            window.open(googleCalendarURL, "_blank");
+        });
+    </script>
+
+</body>
+</html>

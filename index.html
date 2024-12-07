@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools by KOU</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Link ke file CSS lokal -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Navbar (Hamburger Menu) -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 shadow-md sticky top-0 z-20 opacity-80">
+        <div class="container mx-auto flex items-center justify-between">
+            <h1 class="text-2xl font-bold tracking-wide">Tools by KOU</h1>
+            <div class="lg:hidden">
+                <button id="hamburger-icon" class="text-white text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i> <!-- Hamburger Icon -->
+                </button>
+            </div>
+            <nav id="navbar" class="hidden lg:flex space-x-6 text-lg">
+                <a href="#landing" class="hover:text-gray-300 transition-all"><i class="fas fa-home"></i> Beranda</a>
+                <a href="tools/" class="hover:text-gray-300 transition-all"><i class="fas fa-tools"></i> Tools</a>
+                <a href="#about" class="hover:text-gray-300 transition-all"><i class="fas fa-info"></i> Tentang</a>
+                <a href="#support" class="hover:text-gray-300 transition-all"><i class="fas fa-heart"></i> Dukung Kami</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-30 hidden">
+        <div class="bg-white p-6">
+            <button id="close-menu" class="text-black text-2xl mb-4 float-right">
+                <i class="fas fa-times"></i> <!-- Close Icon -->
+            </button>
+            <ul class="space-y-4 text-xl">
+                <li><a href="#" class="block font-bold text-blue-600">Tools by KOU</a></li>
+                <li><a href="#landing" class="block hover:text-blue-600"><i class="fa fas-home"></i> Beranda</a></li>
+                <li><a href="tools/" class="block hover:text-blue-600"><i class="fa fas-tools"></i> Tools</a></li>
+                <li><a href="#about" class="block hover:text-blue-600"><i class="fa fas-info"></i> Tentang</a></li>
+                <li><a href="#support" class="block hover:text-blue-600"><i class="fa fas-heart"></i> Dukung Kami</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Welcome Landing Page -->
+    <section id="landing" class="h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center relative">
+        <!-- Background Image with opacity and parallax effect -->
+        <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('/assets/tools-settings-configuration-setup-concept.jpg');"></div>
+        
+        <!-- Overlay for additional darkening -->
+        <div class="absolute inset-0 bg-black opacity-30"></div>
+
+        <div class="relative z-10 px-6 py-12 max-w-lg mx-auto">
+            <h2 class="text-4xl font-extrabold mb-4 text-yellow-300 animate-fade-up animate-delay-200">Selamat Datang di Tools by KOU</h2>
+            <p class="text-xl text-gray-100 mb-6 animate-fade-up animate-delay-400">Kami menyediakan berbagai alat praktis yang dapat membantu Anda dalam berbagai aktivitas sehari-hari. Jelajahi dan temukan alat yang sesuai dengan kebutuhan Anda!</p>
+            <a href="tools/" class="inline-block bg-transparent border-2 border-white text-white py-2 px-6 rounded-full hover:bg-white hover:text-blue-600 transition duration-300 transform hover:scale-105 animate-fade-up animate-delay-600">Jelajahi Tools</a>
+        </div>
+    </section>
+
+    <!-- Tailwind CSS Animations for Fade, Motion, and Staggered Effects -->
+    <style>
+        /* Keyframe Animations for Fade and Motion */
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Parallax effect for background */
+        @keyframes parallaxMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        /* Apply fade-up animation */
+        .animate-fade-up {
+            animation: fadeUp 1s ease-out forwards;
+        }
+
+        /* Delays for Staggered Animations */
+        .animate-delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .animate-delay-600 {
+            animation-delay: 0.6s;
+        }
+
+        /* Parallax background effect */
+        .parallax-bg {
+            animation: parallaxMove 15s infinite linear;
+        }
+
+        /* Hover Effects for interactive elements */
+        .hover:scale-105:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .hover:opacity-90:hover {
+            opacity: 0.9;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* Animation for smooth background opacity transition */
+        .bg-opacity-transition {
+            transition: background-color 0.5s ease-in-out;
+        }
+    </style>
+
+    <script>
+        // Parallax Effect for Background (optional JS for enhanced control)
+        document.addEventListener("scroll", function() {
+            let scrolled = window.pageYOffset;
+            let parallaxElement = document.querySelector(".parallax-bg");
+            if (parallaxElement) {
+                parallaxElement.style.transform = "translateY(" + scrolled * 0.25 + "px)";
+            }
+        });
+    </script>
+
+    <!-- Popular Tools Section (Slideshow) -->
+    <section id="popular-tools" class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Tools Populer</h2>
+
+            <!-- Slideshow Container -->
+            <div id="tools-slideshow" class="relative w-full overflow-hidden">
+                <div class="flex space-x-4 transition-all duration-500" id="slideshow-container">
+                    <!-- Slideshow items akan di-render di sini -->
+                </div>
+            </div>
+
+            <!-- Button for more tools -->
+            <a href="tools/" class="inline-block bg-blue-600 text-white py-2 px-6 mt-8 rounded-full hover:bg-blue-700 transition-all">Lihat Tools Lainnya</a>
+        </div>
+    </section>
+
+    <!-- Change Log Section -->
+    <section id="changelog" class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Change Log</h2>
+            
+            <div id="changelog-content" class="bg-white p-6 rounded-lg text-left font-semibold text-gray-200 shadow-md space-y-4 mb-4">
+                <!-- Change log entries will be rendered here -->
+            </div>
+
+            <button id="copy-changelog" class="bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700 transition-all">Salin Change Log</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-blue-100 py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-800">Tentang Kami</h2>
+            <p class="text-lg text-gray-600 mb-4">Tools by KOU adalah platform yang mengumpulkan berbagai alat yang dapat membantu Anda dalam kehidupan sehari-hari. Kami percaya bahwa teknologi dapat menyederhanakan banyak hal dan membuat hidup lebih mudah dan efisien.</p>
+            <p class="text-lg text-gray-600">Kami terus mengembangkan dan memperbarui alat-alat yang kami tawarkan agar selalu sesuai dengan kebutuhan pengguna.</p>
+        </div>
+    </section>
+
+    <!-- Support Us Section -->
+    <section id="support" class="py-12 bg-gray-800 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-semibold mb-4">Dukung Kami</h2>
+            <p class="text-lg mb-6">Jika Anda menikmati alat-alat yang kami tawarkan, dukung kami untuk terus berkembang dan memberikan lebih banyak alat yang bermanfaat.</p>
+            <a href="https://lynk.id/payme/kou" class="inline-block bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700 transition duration-300">Donasi Sekarang</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 KOU</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

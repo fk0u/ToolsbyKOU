@@ -1,0 +1,170 @@
+[
+  {
+      "name": "Kalkulator",
+      "description": "Kalkulator Terlengkap yang memiliki 7 Macam kalkulator dalam 1 aplikasi.",
+      "link": "/tools/Calculator/",
+      "icon": "fas fa-calculator"
+  },
+  {
+      "name": "Spotify Downloader",
+      "description": "Alat untuk mengunduh musik dari Spotify.",
+      "link": "https://cybersave.vercel.app/platforms/spotify",
+      "icon": "fab fa-spotify"
+  },
+  {
+      "name": "Tiktok Downloader",
+      "description": "Alat untuk mengunduh video atau musik dari Tiktok.",
+      "link": "https://cybersave.vercel.app/platforms/tiktok",
+      "icon": "fab fa-tiktok"
+  },
+  {
+      "name": "Instagram Downloader",
+      "description": "Alat untuk mengunduh video atau foto dari Instagram.",
+      "link": "https://cybersave.vercel.app/platforms/instagram",
+      "icon": "fab fa-instagram"
+  },
+  {
+      "name": "Soundcloud Downloader",
+      "description": "Alat untuk mengunduh musik dari Soundcloud.",
+      "link": "https://cybersave.vercel.app/platforms/soundcloud",
+      "icon": "fab fa-soundcloud"
+  },
+  {
+      "name": "Pinterest Downloader",
+      "description": "Alat untuk mengunduh gambar atau video dari Pinterest.",
+      "link": "https://cybersave.vercel.app/platforms/pinterest",
+      "icon": "fab fa-pinterest"
+  },
+  {
+      "name": "YouTube Downloader",
+      "description": "Alat untuk mengunduh video atau musik dari YouTube.",
+      "link": "https://cybersave.vercel.app/platforms/youtube",
+      "icon": "fab fa-youtube"
+  },
+  {
+      "name": "Konverter Mata Uang",
+      "description": "Alat untuk mengonversi mata uang antar negara.",
+      "link": "/tools/CurrencyConverter/",
+      "icon": "fas fa-exchange-alt"
+  },
+  {
+      "name": "Perencana Jadwal",
+      "description": "Alat untuk membantu merencanakan jadwal harian Anda.",
+      "link": "/tools/SchedulePlanner/",
+      "icon": "fas fa-calendar-alt"
+  },
+  {
+      "name": "Penghitung Waktu Mundur",
+      "description": "Alat untuk menghitung mundur waktu dalam hitungan detik.",
+      "link": "/tools/CountdownTimer/",
+      "icon": "fas fa-clock"
+  },
+  {
+      "name": "Penerjemah Bahasa Dayak Kenyah",
+      "description": "Alat untuk menerjemahkan bahasa Dayak Kenyah.",
+      "link": "https://kakenyah.vercel.app/",
+      "icon": "fas fa-language"
+  },
+  {
+      "name": "Alat Penghitung Kata",
+      "description": "Alat untuk menghitung jumlah kata dalam teks.",
+      "link": "/tools/WordCounter/",
+      "icon": "fas fa-file-alt"
+  },
+  {
+      "name": "Bot Nulis",
+      "description": "Alat untuk membantu menulis di kertas dengan AI.",
+      "link": "/tools/WritingBOT/",
+      "icon": "fas fa-file-alt"
+  },
+  {
+      "name": "Konverter Biner dan Desimal",
+      "description": "Alat untuk mengonversi bilangan biner dan desimal.",
+      "link": "/tools/Binary2Decimal/",
+      "icon": "fas fa-exchange-alt"
+  },
+  {
+      "name": "Pan Balance Simulator",
+      "description": "Alat untuk mensimulasikan timbangan.",
+      "link": "/tools/PanBalance/",
+      "icon": "fas fa-balance-scale"
+  },
+  {
+    "name": "Password Generator",
+    "description": "Alat untuk membuat kata sandi yang kuat.",
+    "link": "/tools/PasswordGenerator/",
+    "icon": "fas fa-key"
+  },
+  {
+      "name": "WhatsApp Direct Chat",
+      "description": "Alat untuk mengirim pesan langsung melalui WhatsApp.",
+      "link": "/tools/WhatsAppDirectChat/",
+      "icon": "fab fa-whatsapp"
+  },
+  {
+      "name": "Image Converter",
+        "description": "Alat untuk mengonversi gambar ke format lain.",
+        "link": "/tools/ImageConverter/",    
+        "icon": "fas fa-image"
+  },
+  {
+      "name": "PDF Converter",
+      "description": "Alat untuk mengonversi file PDF ke format lain.",
+      "link": "/tools/PDFConverter/",
+      "icon": "fas fa-file-pdf"
+  },
+  {
+      "name": "Video Converter",
+      "description": "Alat untuk mengonversi video ke format lain.",
+      "link": "/tools/VideoConverter/",
+      "icon": "fas fa-video"
+  },
+  {
+      "name": "Audio Converter",
+      "description": "Alat untuk mengonversi audio ke format lain.",
+      "link": "/tools/AudioConverter/",
+      "icon": "fas fa-music"
+  },
+  {
+      "name": "Text to Speech",
+      "description": "Alat untuk mengonversi teks menjadi suara.",
+      "link": "/tools/TextToSpeech/",
+      "icon": "fas fa-volume-up"
+  },
+  {
+      "name": "Speech to Text",
+      "description": "Alat untuk mengonversi suara menjadi teks.",
+      "link": "/tools/SpeechToText/",
+      "icon": "fas fa-microphone"
+  },
+  {
+      "name": "Konverter Satuan",
+      "description": "Alat untuk mengonversi satuan panjang, berat, volume, dan suhu.",
+      "link": "/tools/UnitConverter/",
+      "icon": "fas fa-ruler"
+  },
+  {
+      "name": "Perpendek URL",
+      "description": "Alat untuk memperpendek URL.",
+      "link": "/tools/URLShortener/",
+      "icon": "fas fa-link"
+  },
+  {
+      "name": "QR Code Generator",
+      "description": "Alat untuk membuat kode QR.",
+      "link": "/tools/QRCodeGenerator/",
+      "icon": "fas fa-qrcode"
+  },
+  {
+      "name": "Brat Sticker Generator",
+        "description": "Alat untuk membuat stiker Brat.",
+        "link": "/tools/BratGenerator/",    
+        "icon": "fas fa-sticker-mule"
+  },
+  {
+      "name": "Date Calculator",
+      "description": "Alat untuk menghitung tanggal.",
+      "link": "/tools/DateCalculator/",
+      "icon": "fas fa-calendar-alt"
+  }
+]

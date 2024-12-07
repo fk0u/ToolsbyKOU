@@ -1,0 +1,85 @@
+/* Styling untuk animasi */
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Styling untuk navbar */
+#navbar a:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* Styling untuk tombol Hamburger */
+#hamburger-icon {
+    transition: transform 0.3s ease;
+}
+#hamburger-icon.open {
+    transform: rotate(90deg);
+}
+
+/* Styling tambahan untuk animasi hamburger menu */
+#hamburger-icon.open i {
+    transform: rotate(90deg);
+}
+
+/* Styling untuk mobile menu */
+#mobile-menu {
+    animation: slideIn 0.3s ease-out;
+}
+#mobile-menu ul li {
+    transition: background-color 0.3s ease;
+}
+
+#mobile-menu ul li:hover {
+    background-color: #e2e8f0;
+}
+
+/* Additional styling for close button */
+#close-menu {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#close-menu:hover {
+    transform: rotate(180deg);
+}
+
+/* Styling untuk search bar dan filter sort */
+#search-bar {
+    width: 300px;
+    transition: all 0.3s ease;
+}
+
+#filter-sort {
+    width: 200px;
+}
+
+input, select {
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #3182CE;
+}
+
+/* Additional styling untuk Tools */
+#tools-container .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#tools-container .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
