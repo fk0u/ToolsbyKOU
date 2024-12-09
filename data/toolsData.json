@@ -51,8 +51,15 @@
       "name": "X aka Twitter",
       "description": "Download X Post and videos easily.",
       "icon": "fab fa-twitter",
-      "link": "/platforms/X",
-    }, 
+      "link": "https://cybersave.vercel.app/platforms/X"
+    },
+  {
+     "name": "Threads Downloader ",
+      "description": "Download Threads Post and videos easily.",
+      "icon": "fab fa-threads",
+      "link": "https://cybersave.vercel.app/platforms/threads"
+ } 
+
   {
       "name": "Konverter Mata Uang",
       "description": "Alat untuk mengonversi mata uang antar negara.",
