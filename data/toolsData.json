@@ -42,6 +42,18 @@
       "icon": "fab fa-youtube"
   },
   {
+      "name": "Facebook Downloader",
+      "description": "Alat untuk mengunduh video atau foto dari Facebook.",
+      "link": "https://cybersave.vercel.app/platforms/facebook",
+      "icon": "fab fa-facebook"
+  },
+    {
+      "name": "X aka Twitter",
+      "description": "Download X Post and videos easily.",
+      "icon": "fab fa-twitter",
+      "link": "/platforms/X",
+    }, 
+  {
       "name": "Konverter Mata Uang",
       "description": "Alat untuk mengonversi mata uang antar negara.",
       "link": "/tools/CurrencyConverter/",
